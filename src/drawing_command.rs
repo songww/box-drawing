@@ -17,12 +17,13 @@ use num::*;
 
 // ----------------------------------------------------------------
 
+#[derive(Clone, Copy, Debug)]
 pub enum Direction {
     TopDown,
     BottomUp,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug)]
 pub enum Side {
     TopLeft,
     TopRight,
@@ -226,13 +227,28 @@ fn dedup<T: PartialEq>(s: &[T]) -> usize {
 }
 
 #[inline]
-fn two<F: Float>() -> F {
+pub(crate) fn two<F: Float>() -> F {
     F::one() + F::one()
 }
 
 #[inline]
-fn three<F: Float>() -> F {
+pub(crate) fn three<F: Float>() -> F {
     F::one() + two()
+}
+
+#[inline]
+pub(crate) fn four<F: Float>() -> F {
+    F::one() + three()
+}
+
+#[inline]
+pub(crate) fn five<F: Float>() -> F {
+    F::one() + four()
+}
+
+#[inline]
+pub(crate) fn six<F: Float>() -> F {
+    F::one() + five()
 }
 
 pub trait Canvas<F: Float> {
@@ -242,14 +258,16 @@ pub trait Canvas<F: Float> {
     fn close_path(&self);
 }
 
-pub struct DrawingCommand<C: Canvas<F>, F: Float> {
-    pub metrics: Metrics<F>,
-    canvas: C,
+pub struct DrawingCommand<'m, C: Canvas<F>, F: Float> {
+    pub(crate) metrics: &'m Metrics<F>,
+    pub(crate) canvas: C,
 }
 
-impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingCommand<C, F> {
+impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
+    DrawingCommand<'m, C, F>
+{
     /// General drawing function for a rectangle.
-    fn draw_rect(
+    fn rectangle(
         &self,
         bot_left: &Point<F>,
         bot_right: &Point<F>,
@@ -264,7 +282,7 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
     }
 
     // General drawing function for a polygon.
-    fn draw_poly(&self, coords: &[Point<F>]) {
+    fn polygon(&self, coords: &[Point<F>]) {
         if dedup(coords) >= 3 {
             self.canvas.move_to(&coords[0]);
             for (point_index, point_coords) in coords.iter().enumerate().skip(1) {
@@ -322,7 +340,7 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
         let top_right = (end.x + butt_right / two(), end.y + stroke / two()).into();
         let top_left = (start.x - butt_left / two(), start.y + stroke / two()).into();
 
-        self.draw_rect(&bot_left, &bot_right, &top_right, &top_left);
+        self.rectangle(&bot_left, &bot_right, &top_right, &top_left);
     }
 
     /// General drawing function for a vertical line.
@@ -341,7 +359,7 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
         let top_right = (start.x + stroke / two(), end.y + butt_top / two()).into();
         let top_left = (start.x - stroke / two(), end.y + butt_top / two()).into();
 
-        self.draw_rect(&bot_left, &bot_right, &top_right, &top_left);
+        self.rectangle(&bot_left, &bot_right, &top_right, &top_left);
     }
 
     /// A box.
@@ -354,11 +372,16 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
         let top_right = (end.x, end.y).into();
         let top_left = (start.x, end.y).into();
 
-        self.draw_rect(&bot_left, &bot_right, &top_right, &top_left);
+        self.rectangle(&bot_left, &bot_right, &top_right, &top_left);
     }
 
     /// Dashed horizontal bar.
-    fn dashed_hor_line(&self, step: F, width: impl Into<Option<F>>, stroke: impl Into<Option<F>>) {
+    pub fn dashed_hor_line(
+        &self,
+        step: F,
+        width: impl Into<Option<F>>,
+        stroke: impl Into<Option<F>>,
+    ) {
         let width = width.into().unwrap_or(self.metrics.width);
         let stroke = stroke.into().unwrap_or(self.metrics.stroke);
         let step_length = width / step;
@@ -378,7 +401,12 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
     }
 
     /// Dashed vertical bar.
-    fn dashed_vert_line(self, step: F, length: impl Into<Option<F>>, stroke: impl Into<Option<F>>) {
+    pub fn dashed_vert_line(
+        &self,
+        step: F,
+        length: impl Into<Option<F>>,
+        stroke: impl Into<Option<F>>,
+    ) {
         let length = length.into().unwrap_or(self.metrics.em_height); // EM_HEIGHT
         let stroke = stroke.into().unwrap_or(self.metrics.stroke); // STROKE;
         let step_length = length / step;
@@ -569,7 +597,7 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
         }
 
         for [bl, br, tr, tl] in draws {
-            self.draw_poly(&[bl, br, tr, tl]);
+            self.polygon(&[bl, br, tr, tl]);
         }
     }
 
@@ -588,7 +616,7 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
             let x_left = xvalue;
             let x_rght = xvalue + stroke;
 
-            self.draw_rect(
+            self.rectangle(
                 &(x_left, y_bot).into(),
                 &(x_rght, y_bot).into(),
                 &(x_rght, y_top).into(),
@@ -767,7 +795,7 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
     }
 
     /// Halfwidth horizontal bar, left or right.
-    fn hor_half_bar(
+    pub fn hor_half_bar(
         &self,
         side: Side,
         fatness: impl Into<Option<F>>,
@@ -818,9 +846,9 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
     }
 
     /// Half-height vertical bar, top or bottom.
-    fn vert_half_bar(
+    pub fn vert_half_bar(
         &self,
-        fold: Side,
+        side: Side,
         fatness: impl Into<Option<F>>,
         butt_bot: impl Into<Option<F>>,
         butt_top: impl Into<Option<F>>,
@@ -829,7 +857,7 @@ impl<C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign> DrawingC
         let butt_bot = butt_bot.into().unwrap_or(zero());
         let butt_top = butt_top.into().unwrap_or(zero());
 
-        match fold {
+        match side {
             Side::TopLeft | Side::TopRight => {
                 self.vert_line(
                     &(self.metrics.width / two(), self.metrics.median).into(),

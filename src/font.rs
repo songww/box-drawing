@@ -2,8 +2,10 @@ use std::ops::{AddAssign, SubAssign};
 
 use num::CheckedAdd;
 
-use crate::commands::{Commands, HorBar, VertBar};
-use crate::drawing_command::{Canvas, DrawingCommand, Metrics};
+use crate::commands::{
+    Commands, DashedHorLine, DashedVertLine, HorBar, HorHalfBar, VertBar, VertHalfBar,
+};
+use crate::drawing_command::{four, three, two, Canvas, DrawingCommand, Metrics, Side};
 
 pub struct Recipe<F: num::Float + 'static> {
     c: u32,
@@ -47,41 +49,292 @@ impl<F: num::Float> Recipes<F> {
 }
 */
 
-// static CODES: ::phf::OrderedMap<u32, Recipe<num::Float>> = ::phf::phf_ordered_map! {};
+pub struct Font<F: num::Float> {
+    metrics: Metrics<F>,
+    // drawing: DrawingCommand<C, F>
+}
 
-pub fn recipe<F: num::Float + Default>(c: u32) -> Recipe<F> {
-    match c {
-        0x2500 => Recipe {
-            c: 0x2500,
-            name: "lighthorzbxd",
-            commands: Box::new([Box::new(|_: &Metrics<F>| {
-                Commands::HorBar(HorBar::default())
-            })]),
-        },
-        0x2501 => Recipe {
-            c: 0x2501,
-            name: "heavyhorzbxd",
-            commands: Box::new([Box::new(|m: &Metrics<F>| {
-                Commands::HorBar(HorBar::default().fatness(m.fat))
-            })]),
-        },
-        0x2502 => Recipe {
-            c: 0x2502,
-            name: "lightvertbxd",
-            commands: Box::new([Box::new(|_: &Metrics<F>| {
-                Commands::VertBar(VertBar::default())
-            })]),
-        },
-        0x2503 => Recipe {
-            c: 0x2503,
-            name: "heavyvertbxd",
-            commands: Box::new([Box::new(|m: &Metrics<F>| {
-                Commands::VertBar(VertBar::default().fatness(m.fat))
-            })]),
-        },
+impl<F: num::Float + Default + AddAssign + CheckedAdd + SubAssign + 'static> Font<F> {
+    pub fn new(metrics: Metrics<F>) -> Font<F> {
+        Font { metrics }
+    }
 
-        _ => {
-            unreachable!()
+    pub fn contains(c: u32) -> bool {
+        true
+    }
+
+    pub fn draw_to<C: Canvas<F>>(&self, c: u32, canvas: C) {
+        let drawing = DrawingCommand {
+            metrics: &self.metrics,
+            canvas,
+        };
+        Font::recipe(c).execute(&drawing);
+    }
+
+    fn recipe(c: u32) -> Recipe<F> {
+        match c {
+            // Lines:
+            0x2500 => Recipe {
+                c: 0x2500,
+                name: "lighthorzbxd",
+                commands: Box::new([Box::new(|_: &Metrics<F>| {
+                    Commands::HorBar(HorBar::default())
+                })]),
+            },
+            0x2501 => Recipe {
+                c: 0x2501,
+                name: "heavyhorzbxd",
+                commands: Box::new([Box::new(|m: &Metrics<F>| {
+                    Commands::HorBar(HorBar::default().fatness(m.fat))
+                })]),
+            },
+            0x2502 => Recipe {
+                c: 0x2502,
+                name: "lightvertbxd",
+                commands: Box::new([Box::new(|_: &Metrics<F>| {
+                    Commands::VertBar(VertBar::default())
+                })]),
+            },
+            0x2503 => Recipe {
+                c: 0x2503,
+                name: "heavyvertbxd",
+                commands: Box::new([Box::new(|m: &Metrics<F>| {
+                    Commands::VertBar(VertBar::default().fatness(m.fat))
+                })]),
+            },
+            0x2504 => Recipe {
+                c: 0x2504,
+                name: "lighttrpldashhorzbxd",
+                commands: Box::new([Box::new(|_: &Metrics<F>| {
+                    Commands::DashedHorLine(DashedHorLine::new(three()))
+                })]),
+            },
+            0x2505 => Recipe {
+                c: 0x2505,
+                name: "heavytrpldashhorzbxd",
+                commands: Box::new([Box::new(|m: &Metrics<F>| {
+                    Commands::DashedHorLine(DashedHorLine::new(three()).stroke(m.fat_stroke))
+                })]),
+            },
+            0x2506 => Recipe {
+                c: 0x2506,
+                name: "lighttrpldashvertbxd",
+                commands: Box::new([Box::new(|_: &Metrics<F>| {
+                    Commands::DashedVertLine(DashedVertLine::new(three()))
+                })]),
+            },
+            0x2507 => Recipe {
+                c: 0x2507,
+                name: "heavytrpldashvertbxd",
+                commands: Box::new([Box::new(|m: &Metrics<F>| {
+                    Commands::DashedVertLine(DashedVertLine::new(three()).stroke(m.fat_stroke))
+                })]),
+            },
+            0x2508 => Recipe {
+                c: 0x2508,
+                name: "lighttrpldashhorzbxd",
+                commands: Box::new([Box::new(|_: &Metrics<F>| {
+                    Commands::DashedHorLine(DashedHorLine::new(four()))
+                })]),
+            },
+            0x2509 => Recipe {
+                c: 0x2509,
+                name: "heavyquaddashhorzbxd",
+                commands: Box::new([Box::new(|m: &Metrics<F>| {
+                    Commands::DashedHorLine(DashedHorLine::new(four()).stroke(m.fat_stroke))
+                })]),
+            },
+            0x250A => Recipe {
+                c: 0x250A,
+                name: "lightquaddashvertbxd",
+                commands: Box::new([Box::new(|_: &Metrics<F>| {
+                    Commands::DashedVertLine(DashedVertLine::new(four()))
+                })]),
+            },
+            0x250B => Recipe {
+                c: 0x250B,
+                name: "heavyquaddashvertbxd",
+                commands: Box::new([Box::new(|m: &Metrics<F>| {
+                    Commands::DashedVertLine(DashedVertLine::new(four()).stroke(m.fat_stroke))
+                })]),
+            },
+            0x254C => Recipe {
+                c: 0x254C,
+                name: "lightdbldashhorzbxd",
+                commands: Box::new([Box::new(|_: &Metrics<F>| {
+                    Commands::DashedHorLine(DashedHorLine::new(two()))
+                })]),
+            },
+            0x254D => Recipe {
+                c: 0x254D,
+                name: "heavydbldashhorzbxd",
+                commands: Box::new([Box::new(|m: &Metrics<F>| {
+                    Commands::DashedHorLine(DashedHorLine::new(two()).stroke(m.fat_stroke))
+                })]),
+            },
+            0x254E => Recipe {
+                c: 0x254D,
+                name: "lightdbldashvertbxd",
+                commands: Box::new([Box::new(|_: &Metrics<F>| {
+                    Commands::DashedVertLine(DashedVertLine::new(two()))
+                })]),
+            },
+            0x254F => Recipe {
+                c: 0x254F,
+                name: "heavydbldashvertbxd",
+                commands: Box::new([Box::new(|m: &Metrics<F>| {
+                    Commands::DashedVertLine(DashedVertLine::new(two()).stroke(m.fat_stroke))
+                })]),
+            },
+
+            // Corners:
+            0x250C => Recipe {
+                c: 0x250C,
+                name: "lightdnrightbxd",
+                commands: Box::new([
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::HorHalfBar(HorHalfBar::new(Side::TopRight).butt_left(m.stroke))
+                    }),
+                    Box::new(|_: &Metrics<F>| {
+                        Commands::VertHalfBar(VertHalfBar::new(Side::BottomLeft))
+                    }),
+                ]),
+            },
+            0x250D => Recipe {
+                c: 0x250D,
+                name: "dnlightrightheavybxd",
+                commands: Box::new([
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::HorHalfBar(
+                            HorHalfBar::new(Side::TopRight)
+                                .fatness(m.fat)
+                                .butt_left(m.stroke),
+                        )
+                    }),
+                    Box::new(|_: &Metrics<F>| {
+                        Commands::VertHalfBar(VertHalfBar::new(Side::BottomLeft))
+                    }),
+                ]),
+            },
+
+            0x250E => Recipe {
+                c: 0x250E,
+                name: "dnheavyrightlightbxd",
+                commands: Box::new([
+                    Box::new(|_: &Metrics<F>| {
+                        Commands::HorHalfBar(HorHalfBar::new(Side::TopRight))
+                    }),
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::VertHalfBar(
+                            VertHalfBar::new(Side::BottomLeft)
+                                .fatness(m.fat)
+                                .butt_top(m.stroke),
+                        )
+                    }),
+                ]),
+            },
+            0x250F => Recipe {
+                c: 0x250F,
+                name: "heavydnrightbxd",
+                commands: Box::new([
+                    Box::new(|_: &Metrics<F>| {
+                        Commands::HorHalfBar(HorHalfBar::new(Side::TopRight))
+                    }),
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::VertHalfBar(VertHalfBar::new(Side::BottomLeft).butt_top(m.stroke))
+                    }),
+                ]),
+            },
+            0x2510 => Recipe {
+                c: 0x2510,
+                name: "lightdnleftbxd",
+                commands: Box::new([
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::HorHalfBar(HorHalfBar::new(Side::TopLeft).butt_right(m.stroke))
+                    }),
+                    Box::new(|_: &Metrics<F>| {
+                        Commands::VertHalfBar(VertHalfBar::new(Side::BottomRight))
+                    }),
+                ]),
+            },
+            0x2511 => Recipe {
+                c: 0x2511,
+                name: "dnlightleftheavybxd",
+                commands: Box::new([
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::HorHalfBar(
+                            HorHalfBar::new(Side::TopLeft)
+                                .fatness(m.fat)
+                                .butt_right(m.stroke),
+                        )
+                    }),
+                    Box::new(|_: &Metrics<F>| {
+                        Commands::VertHalfBar(VertHalfBar::new(Side::BottomRight))
+                    }),
+                ]),
+            },
+            0x2512 => Recipe {
+                c: 0x2512,
+                name: "dnheavyleftlightbxd",
+                commands: Box::new([
+                    Box::new(|_: &Metrics<F>| Commands::HorHalfBar(HorHalfBar::new(Side::TopLeft))),
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::VertHalfBar(
+                            VertHalfBar::new(Side::BottomRight)
+                                .fatness(m.fat)
+                                .butt_top(m.stroke),
+                        )
+                    }),
+                ]),
+            },
+            0x2513 => Recipe {
+                c: 0x2513,
+                name: "heavydnleftbxd",
+                commands: Box::new([
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::HorHalfBar(HorHalfBar::new(Side::TopLeft).fatness(m.fat))
+                    }),
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::VertHalfBar(
+                            VertHalfBar::new(Side::BottomRight)
+                                .fatness(m.fat)
+                                .butt_top(m.fat_stroke),
+                        )
+                    }),
+                ]),
+            },
+            0x2514 => Recipe {
+                c: 0x2514,
+                name: "lightuprightbxd",
+                commands: Box::new([
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::HorHalfBar(HorHalfBar::new(Side::BottomRight).butt_left(m.stroke))
+                    }),
+                    Box::new(|_: &Metrics<F>| {
+                        Commands::VertHalfBar(VertHalfBar::new(Side::TopLeft))
+                    }),
+                ]),
+            },
+            0x2515 => Recipe {
+                c: 0x2515,
+                name: "uplightrightheavybxd",
+                commands: Box::new([
+                    Box::new(|m: &Metrics<F>| {
+                        Commands::HorHalfBar(
+                            HorHalfBar::new(Side::BottomRight)
+                                .fatness(m.fat)
+                                .butt_left(m.stroke),
+                        )
+                    }),
+                    Box::new(|_: &Metrics<F>| {
+                        Commands::VertHalfBar(VertHalfBar::new(Side::TopLeft))
+                    }),
+                ]),
+            },
+
+            _ => {
+                unreachable!()
+            }
         }
     }
 }
