@@ -1,1 +1,2046 @@
-unimplemented!()
+match c {
+0x2500 => Recipe {c: 0x2500, name: "lighthorzbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2501 => Recipe {c: 0x2501, name: "heavyhorzbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorBarBuilder::default();
+let attr = HorBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2502 => Recipe {c: 0x2502, name: "lightvertbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2503 => Recipe {c: 0x2503, name: "heavyvertbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = VertBarBuilder::default();
+let attr = VertBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2504 => Recipe {c: 0x2504, name: "lighttrpldashhorzbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = DashedHorLineBuilder::default();
+builder.step(F::from(3f64).unwrap());
+builder.build().unwrap().into()
+ }),
+]) },
+0x2505 => Recipe {c: 0x2505, name: "heavytrpldashhorzbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = DashedHorLineBuilder::default();
+builder.step(F::from(3f64).unwrap());
+builder.stroke(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2506 => Recipe {c: 0x2506, name: "lighttrpldashvertbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = DashedVertLineBuilder::default();
+builder.step(F::from(3f64).unwrap());
+builder.build().unwrap().into()
+ }),
+]) },
+0x2507 => Recipe {c: 0x2507, name: "heavytrpldashvertbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = DashedVertLineBuilder::default();
+builder.step(F::from(3f64).unwrap());
+builder.stroke(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2508 => Recipe {c: 0x2508, name: "lightquaddashhorzbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = DashedHorLineBuilder::default();
+builder.step(F::from(4f64).unwrap());
+builder.build().unwrap().into()
+ }),
+]) },
+0x2509 => Recipe {c: 0x2509, name: "heavyquaddashhorzbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = DashedHorLineBuilder::default();
+builder.step(F::from(4f64).unwrap());
+builder.stroke(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x250A => Recipe {c: 0x250A, name: "lightquaddashvertbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = DashedVertLineBuilder::default();
+builder.step(F::from(4f64).unwrap());
+builder.build().unwrap().into()
+ }),
+]) },
+0x250B => Recipe {c: 0x250B, name: "heavyquaddashvertbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = DashedVertLineBuilder::default();
+builder.step(F::from(4f64).unwrap());
+builder.stroke(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x254C => Recipe {c: 0x254C, name: "lightdbldashhorzbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = DashedHorLineBuilder::default();
+builder.step(F::from(2f64).unwrap());
+builder.build().unwrap().into()
+ }),
+]) },
+0x254D => Recipe {c: 0x254D, name: "heavydbldashhorzbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = DashedHorLineBuilder::default();
+builder.step(F::from(2f64).unwrap());
+builder.stroke(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x254E => Recipe {c: 0x254E, name: "lightdbldashvertbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = DashedVertLineBuilder::default();
+builder.step(F::from(2f64).unwrap());
+builder.build().unwrap().into()
+ }),
+]) },
+0x254F => Recipe {c: 0x254F, name: "heavydbldashvertbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = DashedVertLineBuilder::default();
+builder.step(F::from(2f64).unwrap());
+builder.stroke(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x250C => Recipe {c: 0x250C, name: "lightdnrightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.butt_left(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x250D => Recipe {c: 0x250D, name: "dnlightrightheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_left(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x250E => Recipe {c: 0x250E, name: "dnheavyrightlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x250F => Recipe {c: 0x250F, name: "heavydnrightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2510 => Recipe {c: 0x2510, name: "lightdnleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.butt_right(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2511 => Recipe {c: 0x2511, name: "dnlightleftheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_right(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2512 => Recipe {c: 0x2512, name: "dnheavyleftlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2513 => Recipe {c: 0x2513, name: "heavydnleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2514 => Recipe {c: 0x2514, name: "lightuprightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.butt_left(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2515 => Recipe {c: 0x2515, name: "uplightrightheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_left(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2516 => Recipe {c: 0x2516, name: "upheavyrightlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2517 => Recipe {c: 0x2517, name: "heavyuprightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2518 => Recipe {c: 0x2518, name: "lightupleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.butt_right(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2519 => Recipe {c: 0x2519, name: "uplightleftheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_right(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x251A => Recipe {c: 0x251A, name: "upheavyleftlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x251B => Recipe {c: 0x251B, name: "heavyupleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x251C => Recipe {c: 0x251C, name: "lightvertrightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x251D => Recipe {c: 0x251D, name: "vertlightrightheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x251E => Recipe {c: 0x251E, name: "upheavyrightdnlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x251F => Recipe {c: 0x251F, name: "dnheavyrightuplightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2520 => Recipe {c: 0x2520, name: "vertheavyrightlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertBarBuilder::default();
+let attr = VertBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2521 => Recipe {c: 0x2521, name: "dnlightrightupheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2522 => Recipe {c: 0x2522, name: "uplightrightdnheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2523 => Recipe {c: 0x2523, name: "heavyvertrightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertBarBuilder::default();
+let attr = VertBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2524 => Recipe {c: 0x2524, name: "lightvertleftbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2525 => Recipe {c: 0x2525, name: "vertlightleftheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2526 => Recipe {c: 0x2526, name: "upheavyleftdnlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2527 => Recipe {c: 0x2527, name: "dnheavyleftuplightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2528 => Recipe {c: 0x2528, name: "vertheavyleftlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertBarBuilder::default();
+let attr = VertBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2529 => Recipe {c: 0x2529, name: "dnlightleftupheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x252A => Recipe {c: 0x252A, name: "uplightleftdnheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x252B => Recipe {c: 0x252B, name: "heavyvertleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertBarBuilder::default();
+let attr = VertBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x252C => Recipe {c: 0x252C, name: "lightdnhorzbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x252D => Recipe {c: 0x252D, name: "leftheavyrightdnlightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_right(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x252E => Recipe {c: 0x252E, name: "rightheavyleftdnlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_left(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x252F => Recipe {c: 0x252F, name: "dnlighthorzheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorBarBuilder::default();
+let attr = HorBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2530 => Recipe {c: 0x2530, name: "dnheavyhorzlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2531 => Recipe {c: 0x2531, name: "rightlightleftdnheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2532 => Recipe {c: 0x2532, name: "leftlightrightdnheavybxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2533 => Recipe {c: 0x2533, name: "heavydnhorzbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorBarBuilder::default();
+let attr = HorBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2534 => Recipe {c: 0x2534, name: "lightuphorzbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2535 => Recipe {c: 0x2535, name: "leftheavyrightuplightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_right(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2536 => Recipe {c: 0x2536, name: "rightheavyleftuplightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_left(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2537 => Recipe {c: 0x2537, name: "uplighthorzheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorBarBuilder::default();
+let attr = HorBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2538 => Recipe {c: 0x2538, name: "upheavyhorzlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2539 => Recipe {c: 0x2539, name: "rightlightleftupheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x253A => Recipe {c: 0x253A, name: "leftlightrightupheavybxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x253B => Recipe {c: 0x253B, name: "heavyuphorzbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorBarBuilder::default();
+let attr = HorBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x253C => Recipe {c: 0x253C, name: "lightverthorzbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x253D => Recipe {c: 0x253D, name: "leftheavyrightvertlightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x253E => Recipe {c: 0x253E, name: "rightheavyleftvertlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x253F => Recipe {c: 0x253F, name: "vertlighthorzheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorBarBuilder::default();
+let attr = HorBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2540 => Recipe {c: 0x2540, name: "upheavydnhorzlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2541 => Recipe {c: 0x2541, name: "dnheavyuphorzlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2542 => Recipe {c: 0x2542, name: "vertheavyhorzlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertBarBuilder::default();
+let attr = VertBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2543 => Recipe {c: 0x2543, name: "leftupheavyrightdnlightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_right(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2544 => Recipe {c: 0x2544, name: "rightupheavyleftdnlightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_left(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2545 => Recipe {c: 0x2545, name: "leftdnheavyrightuplightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_right(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2546 => Recipe {c: 0x2546, name: "rightdnheavyleftuplightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_left(m.fat_stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2547 => Recipe {c: 0x2547, name: "dnlightuphorzheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorBarBuilder::default();
+let attr = HorBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2548 => Recipe {c: 0x2548, name: "uplightdnhorzheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorBarBuilder::default();
+let attr = HorBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2549 => Recipe {c: 0x2549, name: "rightlightleftvertheavybxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertBarBuilder::default();
+let attr = VertBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x254A => Recipe {c: 0x254A, name: "leftlightrightvertheavybxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertBarBuilder::default();
+let attr = VertBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x254B => Recipe {c: 0x254B, name: "heavyverthorzbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorBarBuilder::default();
+let attr = HorBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertBarBuilder::default();
+let attr = VertBar::position(0);
+c!(builder::attr)(m.fat);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2550 => Recipe {c: 0x2550, name: "dblhorzbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2551 => Recipe {c: 0x2551, name: "dblvertbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = VertSplitBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2552 => Recipe {c: 0x2552, name: "dnsngrightdblbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitHalfBarBuilder::default();
+let attr = HorSplitHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.butt_top(F::from(3f64).unwrap()*m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2553 => Recipe {c: 0x2553, name: "dndblrightsngbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.butt_left(F::from(3f64).unwrap()*m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertSplitHalfBarBuilder::default();
+let attr = VertSplitHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.butt_top(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2554 => Recipe {c: 0x2554, name: "dbldnrightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = OuterCornerBuilder::default();
+let attr = OuterCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = OuterCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2555 => Recipe {c: 0x2555, name: "dnsngleftdblbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitHalfBarBuilder::default();
+let attr = HorSplitHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.butt_top(F::from(3f64).unwrap()*m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2556 => Recipe {c: 0x2556, name: "dndblleftsngbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.butt_right(F::from(3f64).unwrap()*m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertSplitHalfBarBuilder::default();
+let attr = VertSplitHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.butt_top(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2557 => Recipe {c: 0x2557, name: "dbldnleftbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = OuterCornerBuilder::default();
+let attr = OuterCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = OuterCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2558 => Recipe {c: 0x2558, name: "upsngrightdblbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitHalfBarBuilder::default();
+let attr = HorSplitHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.butt_bot(F::from(3f64).unwrap()*m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2559 => Recipe {c: 0x2559, name: "updblrightsngbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.butt_left(F::from(3f64).unwrap()*m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertSplitHalfBarBuilder::default();
+let attr = VertSplitHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.butt_bot(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x255A => Recipe {c: 0x255A, name: "dbluprightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = OuterCornerBuilder::default();
+let attr = OuterCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = OuterCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x255B => Recipe {c: 0x255B, name: "upsngleftdblbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitHalfBarBuilder::default();
+let attr = HorSplitHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.butt_bot(F::from(3f64).unwrap()*m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x255C => Recipe {c: 0x255C, name: "updblleftsngbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.butt_right(F::from(3f64).unwrap()*m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertSplitHalfBarBuilder::default();
+let attr = VertSplitHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.butt_bot(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x255D => Recipe {c: 0x255D, name: "dblupleftbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = OuterCornerBuilder::default();
+let attr = OuterCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = OuterCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x255E => Recipe {c: 0x255E, name: "vertsngrightdblbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitHalfBarBuilder::default();
+let attr = HorSplitHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x255F => Recipe {c: 0x255F, name: "vertdblrightsngbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.butt_left(-m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertSplitBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2560 => Recipe {c: 0x2560, name: "dblvertrightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = VertLineBuilder::default();
+let attr = VertLine::position(0);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap()-m.stroke, m.median-m.height/F::from(2f64).unwrap())));
+let attr = VertLine::position(1);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap()-m.stroke, m.median+m.height/F::from(2f64).unwrap())));
+let attr = VertLine::position(2);
+c!(builder::attr)(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2561 => Recipe {c: 0x2561, name: "vertsngleftdblbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitHalfBarBuilder::default();
+let attr = HorSplitHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2562 => Recipe {c: 0x2562, name: "vertdblleftsngbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.butt_right(-m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertSplitBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2563 => Recipe {c: 0x2563, name: "dblvertleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = VertLineBuilder::default();
+let attr = VertLine::position(0);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap()+m.stroke, m.median-m.height/F::from(2f64).unwrap())));
+let attr = VertLine::position(1);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap()+m.stroke, m.median+m.height/F::from(2f64).unwrap())));
+let attr = VertLine::position(2);
+c!(builder::attr)(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2564 => Recipe {c: 0x2564, name: "dnsnghorzdblbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertLineBuilder::default();
+let attr = VertLine::position(0);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap(), m.median-m.height/F::from(2f64).unwrap())));
+let attr = VertLine::position(1);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap(), m.median-m.stroke)));
+let attr = VertLine::position(2);
+c!(builder::attr)(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2565 => Recipe {c: 0x2565, name: "dndblhorzsngbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertSplitHalfBarBuilder::default();
+let attr = VertSplitHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2566 => Recipe {c: 0x2566, name: "dbldnhorzbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorLineBuilder::default();
+let attr = HorLine::position(0);
+c!(builder::attr)(Point::from((F::from(0f64).unwrap(), m.median+m.stroke)));
+let attr = HorLine::position(1);
+c!(builder::attr)(Point::from((m.width, m.median+m.stroke)));
+let attr = HorLine::position(2);
+c!(builder::attr)(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2567 => Recipe {c: 0x2567, name: "upsnghorzdblbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertLineBuilder::default();
+let attr = VertLine::position(0);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap(), m.median+m.stroke)));
+let attr = VertLine::position(1);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap(), m.median+m.height/F::from(2f64).unwrap())));
+let attr = VertLine::position(2);
+c!(builder::attr)(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2568 => Recipe {c: 0x2568, name: "updblhorzsngbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertSplitHalfBarBuilder::default();
+let attr = VertSplitHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2569 => Recipe {c: 0x2569, name: "dbluphorzbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorLineBuilder::default();
+let attr = HorLine::position(0);
+c!(builder::attr)(Point::from((F::from(0f64).unwrap(), m.median-m.stroke)));
+let attr = HorLine::position(1);
+c!(builder::attr)(Point::from((m.width, m.median-m.stroke)));
+let attr = HorLine::position(2);
+c!(builder::attr)(m.stroke);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+]) },
+0x256A => Recipe {c: 0x256A, name: "vertsnghorzdblbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorSplitBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x256B => Recipe {c: 0x256B, name: "vertdblhorzsngbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = VertSplitBarBuilder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x256C => Recipe {c: 0x256C, name: "dblverthorzbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|_: &Metrics<F>| { let builder = InnerCornerBuilder::default();
+let attr = InnerCorner::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = InnerCorner::position(1);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+]) },
+0x256D => Recipe {c: 0x256D, name: "lightarcdnrightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = ArcBuilder::default();
+let attr = Arc::position(0);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap(), m.median-m.height/F::from(2f64).unwrap())));
+let attr = Arc::position(1);
+c!(builder::attr)(Point::from((m.width, m.median)));
+let attr = Arc::position(2);
+c!(builder::attr)(Side::TopLeft);
+let attr = Arc::position(3);
+c!(builder::attr)(m.stroke);
+let attr = Arc::position(4);
+c!(builder::attr)(m.radius);
+let attr = Arc::position(5);
+c!(builder::attr)(m.butt);
+builder.build().unwrap().into()
+ }),
+]) },
+0x256E => Recipe {c: 0x256E, name: "lightarcdnleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = ArcBuilder::default();
+let attr = Arc::position(0);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap(), m.median-m.height/F::from(2f64).unwrap())));
+let attr = Arc::position(1);
+c!(builder::attr)(Point::from((F::from(0f64).unwrap(), m.median)));
+let attr = Arc::position(2);
+c!(builder::attr)(Side::TopRight);
+let attr = Arc::position(3);
+c!(builder::attr)(m.stroke);
+let attr = Arc::position(4);
+c!(builder::attr)(m.radius);
+let attr = Arc::position(5);
+c!(builder::attr)(m.butt);
+builder.build().unwrap().into()
+ }),
+]) },
+0x256F => Recipe {c: 0x256F, name: "lightarcupleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = ArcBuilder::default();
+let attr = Arc::position(0);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap(), m.median+m.height/F::from(2f64).unwrap())));
+let attr = Arc::position(1);
+c!(builder::attr)(Point::from((F::from(0f64).unwrap(), m.median)));
+let attr = Arc::position(2);
+c!(builder::attr)(Side::BottomRight);
+let attr = Arc::position(3);
+c!(builder::attr)(m.stroke);
+let attr = Arc::position(4);
+c!(builder::attr)(m.radius);
+let attr = Arc::position(5);
+c!(builder::attr)(m.butt);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2570 => Recipe {c: 0x2570, name: "lightarcuprightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = ArcBuilder::default();
+let attr = Arc::position(0);
+c!(builder::attr)(Point::from((m.width/F::from(2f64).unwrap(), m.median+m.height/F::from(2f64).unwrap())));
+let attr = Arc::position(1);
+c!(builder::attr)(Point::from((m.width, m.median)));
+let attr = Arc::position(2);
+c!(builder::attr)(Side::BottomLeft);
+let attr = Arc::position(3);
+c!(builder::attr)(m.stroke);
+let attr = Arc::position(4);
+c!(builder::attr)(m.radius);
+let attr = Arc::position(5);
+c!(builder::attr)(m.butt);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2571 => Recipe {c: 0x2571, name: "lightdiaguprightdnleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = DiagonalBuilder::default();
+let attr = Diagonal::position(0);
+c!(builder::attr)(Point::from((F::from(0f64).unwrap(), m.median-m.em_height/F::from(2f64).unwrap())));
+let attr = Diagonal::position(1);
+c!(builder::attr)(Point::from((m.width, m.median+m.em_height/F::from(2f64).unwrap())));
+let attr = Diagonal::position(2);
+c!(builder::attr)(Direction::BottomUp);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2572 => Recipe {c: 0x2572, name: "lightdiagupleftdnrightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = DiagonalBuilder::default();
+let attr = Diagonal::position(0);
+c!(builder::attr)(Point::from((F::from(0f64).unwrap(), m.median+m.em_height/F::from(2f64).unwrap())));
+let attr = Diagonal::position(1);
+c!(builder::attr)(Point::from((m.width, m.median-m.em_height/F::from(2f64).unwrap())));
+let attr = Diagonal::position(2);
+c!(builder::attr)(Direction::topDown);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2573 => Recipe {c: 0x2573, name: "lightdiagcrossbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = DiagonalBuilder::default();
+let attr = Diagonal::position(0);
+c!(builder::attr)(Point::from((F::from(0f64).unwrap(), m.median+m.em_height/F::from(2f64).unwrap())));
+let attr = Diagonal::position(1);
+c!(builder::attr)(Point::from((m.width, m.median-m.em_height/F::from(2f64).unwrap())));
+let attr = Diagonal::position(2);
+c!(builder::attr)(Direction::topDown);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = DiagonalBuilder::default();
+let attr = Diagonal::position(0);
+c!(builder::attr)(Point::from((F::from(0f64).unwrap(), m.median-m.em_height/F::from(2f64).unwrap())));
+let attr = Diagonal::position(1);
+c!(builder::attr)(Point::from((m.width, m.median+m.em_height/F::from(2f64).unwrap())));
+let attr = Diagonal::position(2);
+c!(builder::attr)(Direction::BottomUp);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2574 => Recipe {c: 0x2574, name: "lightleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.butt_right(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2575 => Recipe {c: 0x2575, name: "lightupbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.butt_bot(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2576 => Recipe {c: 0x2576, name: "lightrightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.butt_left(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2577 => Recipe {c: 0x2577, name: "lightdnbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.butt_top(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2578 => Recipe {c: 0x2578, name: "heavyleftbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_right(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2579 => Recipe {c: 0x2579, name: "heavyupbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x257A => Recipe {c: 0x257A, name: "heavyrightbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_left(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x257B => Recipe {c: 0x257B, name: "heavydnbxd", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x257C => Recipe {c: 0x257C, name: "lightleftheavyrightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_left(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x257D => Recipe {c: 0x257D, name: "lightupheavydnbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_top(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x257E => Recipe {c: 0x257E, name: "heavyleftlightrightbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::TopRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = HorHalfBarBuilder::default();
+let attr = HorHalfBar::position(0);
+c!(builder::attr)(Side::BottomLeft);
+let attr = HorHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_right(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x257F => Recipe {c: 0x257F, name: "heavyuplightdnbxd", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::BottomRight);
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = VertHalfBarBuilder::default();
+let attr = VertHalfBar::position(0);
+c!(builder::attr)(Side::TopLeft);
+let attr = VertHalfBar::position(1);
+c!(builder::attr)(m.fat);
+builder.butt_bot(m.stroke);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2580 => Recipe {c: 0x2580, name: "uphalfblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.block_origin.x, m.median)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2581 => Recipe {c: 0x2581, name: "dneighthblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width, m.block_origin.y+m.block_height*F::from(1f64).unwrap()/F::from(8f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2582 => Recipe {c: 0x2582, name: "dnquarterblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width, m.block_origin.y+m.block_height*F::from(1f64).unwrap()/F::from(4f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2583 => Recipe {c: 0x2583, name: "dnthreeeighthsblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width, m.block_origin.y+m.block_height*F::from(3f64).unwrap()/F::from(8f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2584 => Recipe {c: 0x2584, name: "dnhalfblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width, m.block_origin.y+m.block_height*F::from(1f64).unwrap()/F::from(2f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2585 => Recipe {c: 0x2585, name: "dnfiveeighthsblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width, m.block_origin.y+m.block_height*F::from(5f64).unwrap()/F::from(8f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2586 => Recipe {c: 0x2586, name: "dnthreequartersblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width, m.block_origin.y+m.block_height*F::from(3f64).unwrap()/F::from(4f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2587 => Recipe {c: 0x2587, name: "dnseveneighthsblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width, m.block_origin.y+m.block_height*F::from(7f64).unwrap()/F::from(8f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2588 => Recipe {c: 0x2588, name: "fullblock", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = Box_Builder::default();
+builder.build().unwrap().into()
+ }),
+]) },
+0x2589 => Recipe {c: 0x2589, name: "leftseveneighthsblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(7f64).unwrap()/F::from(8f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x258A => Recipe {c: 0x258A, name: "leftthreequartersblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(3f64).unwrap()/F::from(4f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x258B => Recipe {c: 0x258B, name: "leftfiveeighthsblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(5f64).unwrap()/F::from(8f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x258C => Recipe {c: 0x258C, name: "lefthalfblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(1f64).unwrap()/F::from(2f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x258D => Recipe {c: 0x258D, name: "leftthreeeighthsblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(3f64).unwrap()/F::from(8f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x258E => Recipe {c: 0x258E, name: "leftquarterblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(1f64).unwrap()/F::from(4f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x258F => Recipe {c: 0x258F, name: "lefteighthblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(1f64).unwrap()/F::from(8f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2590 => Recipe {c: 0x2590, name: "righthalfblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.width/F::from(2f64).unwrap(), m.block_origin.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2594 => Recipe {c: 0x2594, name: "upeighthblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.block_origin.x, m.block_origin.y+m.block_height*F::from(7f64).unwrap()/F::from(8f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2595 => Recipe {c: 0x2595, name: "righteighthblock", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.width*F::from(7f64).unwrap()/F::from(8f64).unwrap(), m.block_origin.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2591 => Recipe {c: 0x2591, name: "lightshade", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = PolkaShadeBuilder::default();
+let attr = PolkaShade::position(0);
+c!(builder::attr)(Shade::TwentyFive);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2592 => Recipe {c: 0x2592, name: "mediumshade", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = PolkaShadeBuilder::default();
+let attr = PolkaShade::position(0);
+c!(builder::attr)(Shade::Fifty);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2593 => Recipe {c: 0x2593, name: "darkshade", commands: Box::new([ 
+Box::new(|_: &Metrics<F>| { let builder = PolkaShadeBuilder::default();
+let attr = PolkaShade::position(0);
+c!(builder::attr)(Shade::SeventyFive);
+builder.build().unwrap().into()
+ }),
+]) },
+0x2596 => Recipe {c: 0x2596, name: "dnleftquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(1f64).unwrap()/F::from(2f64).unwrap(), m.block_origin.y+m.block_height*F::from(1f64).unwrap()/F::from(2f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2597 => Recipe {c: 0x2597, name: "dnrightquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.width/F::from(2f64).unwrap(), m.block_origin.y)));
+builder.end(Point::from((m.block_top.x, m.median)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2598 => Recipe {c: 0x2598, name: "upleftquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.block_origin.x, m.median)));
+builder.end(Point::from((m.width*F::from(1f64).unwrap()/F::from(2f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x2599 => Recipe {c: 0x2599, name: "upleftdnleftdnrightquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(1f64).unwrap()/F::from(2f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width, m.block_origin.y+m.block_height*F::from(1f64).unwrap()/F::from(2f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+0x259A => Recipe {c: 0x259A, name: "upleftdnrightquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.width/F::from(2f64).unwrap(), m.block_origin.y)));
+builder.end(Point::from((m.block_top.x, m.median)));
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.block_origin.x, m.median)));
+builder.end(Point::from((m.width*F::from(1f64).unwrap()/F::from(2f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x259B => Recipe {c: 0x259B, name: "upleftuprightdnleftquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(1f64).unwrap()/F::from(2f64).unwrap(), m.block_top.y)));
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.block_origin.x, m.median)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x259C => Recipe {c: 0x259C, name: "upleftuprightdnrightquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.width/F::from(2f64).unwrap(), m.block_origin.y)));
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.block_origin.x, m.median)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x259D => Recipe {c: 0x259D, name: "uprightquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.width/F::from(2f64).unwrap(), m.median)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x259E => Recipe {c: 0x259E, name: "uprightdnleftquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width*F::from(1f64).unwrap()/F::from(2f64).unwrap(), m.block_origin.y+m.block_height*F::from(1f64).unwrap()/F::from(2f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.width/F::from(2f64).unwrap(), m.median)));
+builder.build().unwrap().into()
+ }),
+]) },
+0x259F => Recipe {c: 0x259F, name: "uprightdnleftdnrightquadrant", commands: Box::new([ 
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.start(Point::from((m.width/F::from(2f64).unwrap(), m.block_origin.y)));
+builder.build().unwrap().into()
+ }),
+Box::new(|m: &Metrics<F>| { let builder = Box_Builder::default();
+builder.end(Point::from((m.width, m.block_origin.y+m.block_height*F::from(1f64).unwrap()/F::from(2f64).unwrap())));
+builder.build().unwrap().into()
+ }),
+]) },
+}

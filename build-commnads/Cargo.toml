@@ -7,6 +7,6 @@ edition = "2021"
 
 [dependencies]
 num = "0.4"
-box-drawing = { path = "../" }
+#box-drawing = { path = "../" }
 rustpython-parser = "0.1"
 pyo3 = { version = "0.16", features = ["auto-initialize"] }

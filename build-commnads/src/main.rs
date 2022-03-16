@@ -149,9 +149,9 @@ fn build_command<'a>(s: &'a mut String, command: &ast::Located<ast::ExpressionTy
             for keyword in keywords.iter() {
                 let kwname = keyword.name.as_ref().unwrap();
                 let attr = normalized_keyword(&kwname);
-                s.push_str("c!(builder.");
+                s.push_str("builder.");
                 s.push_str(attr);
-                s.push_str(")(");
+                s.push_str("(");
                 if take_expr(s, &keyword.value) {
                     mrequired = true;
                 }
