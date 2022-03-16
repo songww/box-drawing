@@ -178,9 +178,9 @@ mod f64_ {
 // Checking which application we are in:
 
 #[derive(Clone, Copy, Debug, PartialEq)]
-pub struct Point<F: Float> {
-    x: F,
-    y: F,
+pub struct Point<F: Float + Clone + Copy> {
+    pub x: F,
+    pub y: F,
 }
 
 impl<F: Float> From<(F, F)> for Point<F> {
@@ -205,7 +205,7 @@ impl<F: Float> Hash for Point<F> {
 }
 
 #[repr(u8)]
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub enum Shade {
     // 25
     TwentyFive,
@@ -363,7 +363,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     }
 
     /// A box.
-    fn box_(&self, start: impl Into<Option<Point<F>>>, end: impl Into<Option<Point<F>>>) {
+    pub fn box_(&self, start: impl Into<Option<Point<F>>>, end: impl Into<Option<Point<F>>>) {
         let start = start.into().unwrap_or(self.metrics.block_origin); // BLOCK_ORIGIN
         let end = end.into().unwrap_or(self.metrics.block_top); // BLOCK_TOP
 
@@ -461,7 +461,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
 
     /// Shading patterns, consisting of polka dots.
     /// Not used in any of the drawing recipes, but perhaps useful for somebody.
-    fn polka_shade(&self, shade: Shade) {
+    pub fn polka_shade(&self, shade: Shade) {
         let vstep = F::from(100f32).unwrap();
         let hstep = F::from(200f32).unwrap();
         let radius = match shade {
@@ -626,7 +626,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     }
 
     /// Diagonal line in two possible directions; either bottomUp or topDown.
-    fn diagonal(&self, start: &Point<F>, end: &Point<F>, direction: Direction) {
+    pub fn diagonal(&self, start: &Point<F>, end: &Point<F>, direction: Direction) {
         let diagonal_length = Float::hypot(self.metrics.width, self.metrics.em_height);
         let angle1 = Float::asin(self.metrics.width / diagonal_length);
         let angle2 = F::from(std::f64::consts::PI).unwrap() / two() - angle1;
@@ -670,7 +670,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     }
 
     /// Rounded corner.
-    fn arc(
+    pub fn arc(
         &self,
         start: Point<F>,
         end: Point<F>,
@@ -888,7 +888,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     }
 
     /// Double-stroked horizontal bar, left or right.
-    fn hor_split_bar(
+    pub fn hor_split_bar(
         &self,
         fatness: impl Into<Option<F>>,
         butt_left: impl Into<Option<F>>,
@@ -905,7 +905,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     }
 
     /// Double-stroked vertical bar, top or bottom.
-    fn vert_split_bar(
+    pub fn vert_split_bar(
         &self,
         fatness: impl Into<Option<F>>,
         butt_bot: impl Into<Option<F>>,
@@ -1069,7 +1069,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     }
 
     /// Inner part of a double-stroked corner.
-    fn inner_corner(
+    pub fn inner_corner(
         &self,
         side: Side,
         fatness: impl Into<Option<F>>,
