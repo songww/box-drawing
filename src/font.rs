@@ -34,11 +34,12 @@ macro_rules! command {
     };
 }
 
-macro_rules! c {
-    ($builder:ident :: $attr:expr) => {
-        $builder.$attr
-    };
-}
+// macro_rules! set {
+//     ($builder:ident :: $attr:expr => $value:expr) => {
+//         let field = format_ident!("{}", $attr);
+//         $builder.#field(expr)
+//     };
+// }
 
 pub struct Font<F: num::Float> {
     metrics: Metrics<F>,

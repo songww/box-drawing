@@ -105,8 +105,8 @@ fn build_command<'a>(s: &'a mut String, command: &ast::Located<ast::ExpressionTy
             s.push_str(&format!("let builder = {}Builder::default();\n", name));
 
             for (idx, arg) in args.iter().enumerate() {
-                s.push_str(&format!("let attr = {}::position({});\n", name, idx));
-                s.push_str("c!(builder::attr)(");
+                // s.push_str(&format!("let attr = {}::position({});\n", name, idx));
+                s.push_str(&format!("builder.set_{}(", idx));
                 match arg.node {
                     ast::ExpressionType::Identifier { ref name } => {
                         mrequired = true;
@@ -144,7 +144,7 @@ fn build_command<'a>(s: &'a mut String, command: &ast::Located<ast::ExpressionTy
                         unreachable!("cargo:warning= => {}( {:?}", name, arg.node);
                     }
                 }
-                s.push_str(");\n");
+                s.push_str(".into());\n");
             }
             for keyword in keywords.iter() {
                 let kwname = keyword.name.as_ref().unwrap();
@@ -155,7 +155,7 @@ fn build_command<'a>(s: &'a mut String, command: &ast::Located<ast::ExpressionTy
                 if take_expr(s, &keyword.value) {
                     mrequired = true;
                 }
-                s.push_str(");");
+                s.push_str(".into());");
                 s.push('\n');
             }
         }

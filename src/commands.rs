@@ -6,7 +6,10 @@ use num::{CheckedAdd, Float};
 
 use crate::drawing_command::{Canvas, Direction, DrawingCommand, Point, Shade, Side};
 
-pub enum Commands<F> {
+pub enum Commands<F>
+where
+    F: Float + Clone + Copy,
+{
     HorBar(HorBar<F>),
     VertBar(VertBar<F>),
     DashedHorLine(DashedHorLine<F>),
@@ -23,89 +26,44 @@ pub enum Commands<F> {
     HorLine(HorLine<F>),
 }
 
-impl<F> From<HorBar<F>> for Commands<F> {
-    fn from(c: HorBar<F>) -> Self {
-        Commands::HorBar(c)
-    }
+macro_rules! impl_into {
+    ($command:ident -> $commands:ident) => {
+        impl<F> From<$command<F>> for $commands<F>
+        where
+            F: Float + Clone + Copy,
+        {
+            fn from(c: $command<F>) -> Self {
+                Commands::$command(c)
+            }
+        }
+    };
+
+    (-F, $command:ident -> $commands:ident) => {
+        impl<F> From<$command> for $commands<F>
+        where
+            F: Float + Clone + Copy,
+        {
+            fn from(c: $command) -> Self {
+                Commands::$command(c)
+            }
+        }
+    };
 }
 
-impl<F> From<VertBar<F>> for Commands<F> {
-    fn from(c: VertBar<F>) -> Self {
-        Commands::VertBar(c)
-    }
-}
-
-impl<F> From<DashedHorLine<F>> for Commands<F> {
-    fn from(c: DashedHorLine<F>) -> Self {
-        Commands::DashedHorLine(c)
-    }
-}
-
-impl<F> From<DashedVertLine<F>> for Commands<F> {
-    fn from(c: DashedVertLine<F>) -> Self {
-        Commands::DashedVertLine(c)
-    }
-}
-
-impl<F> From<HorHalfBar<F>> for Commands<F> {
-    fn from(c: HorHalfBar<F>) -> Self {
-        Commands::HorHalfBar(c)
-    }
-}
-
-impl<F> From<VertHalfBar<F>> for Commands<F> {
-    fn from(c: VertHalfBar<F>) -> Self {
-        Commands::VertHalfBar(c)
-    }
-}
-
-impl<F> From<PolkaShade> for Commands<F> {
-    fn from(c: PolkaShade) -> Self {
-        Commands::PolkaShade(c)
-    }
-}
-
-impl<F> From<Box_<F>> for Commands<F> {
-    fn from(c: Box_<F>) -> Self {
-        Commands::Box_(c)
-    }
-}
-
-impl<F> From<Arc<F>> for Commands<F> {
-    fn from(c: Arc<F>) -> Self {
-        Commands::Arc(c)
-    }
-}
-
-impl<F> From<Diagonal<F>> for Commands<F> {
-    fn from(c: Diagonal<F>) -> Self {
-        Commands::Diagonal(c)
-    }
-}
-
-impl<F> From<InnerCorner<F>> for Commands<F> {
-    fn from(c: InnerCorner<F>) -> Self {
-        Commands::InnerCorner(c)
-    }
-}
-
-impl<F> From<HorSplitBar<F>> for Commands<F> {
-    fn from(c: HorSplitBar<F>) -> Self {
-        Commands::HorSplitBar(c)
-    }
-}
-
-impl<F> From<VertSplitBar<F>> for Commands<F> {
-    fn from(c: VertSplitBar<F>) -> Self {
-        Commands::VertSplitBar(c)
-    }
-}
-
-impl<F> From<HorLine<F>> for Commands<F> {
-    fn from(c: HorLine<F>) -> Self {
-        Commands::HorLine(c)
-    }
-}
+impl_into!(HorBar -> Commands);
+impl_into!(VertBar -> Commands);
+impl_into!(DashedHorLine -> Commands);
+impl_into!(DashedVertLine -> Commands);
+impl_into!(HorHalfBar -> Commands);
+impl_into!(VertHalfBar -> Commands);
+impl_into!(Box_ -> Commands);
+impl_into!(-F, PolkaShade -> Commands);
+impl_into!(Arc -> Commands);
+impl_into!(Diagonal -> Commands);
+impl_into!(InnerCorner -> Commands);
+impl_into!(HorSplitBar -> Commands);
+impl_into!(VertSplitBar -> Commands);
+impl_into!(HorLine -> Commands);
 
 impl<F: num::Float + AddAssign + CheckedAdd + SubAssign> Commands<F> {
     pub fn execute<C: Canvas<F>>(&self, ctx: &DrawingCommand<C, F>) {
@@ -171,17 +129,17 @@ impl<F: num::Float + AddAssign + CheckedAdd + SubAssign> Commands<F> {
                 side,
                 fatness,
                 corner_median,
-            }) => ctx.inner_corner(*side, fatness, corner_median),
+            }) => ctx.inner_corner(*side, *fatness, *corner_median),
             Commands::HorSplitBar(HorSplitBar {
                 fatness,
                 butt_left,
                 butt_right,
-            }) => ctx.hor_split_bar(fatness, butt_left, butt_right),
+            }) => ctx.hor_split_bar(*fatness, *butt_left, *butt_right),
             Commands::VertSplitBar(VertSplitBar {
                 fatness,
                 butt_bot,
                 butt_top,
-            }) => ctx.vert_split_bar(fatness, butt_bot, butt_top),
+            }) => ctx.vert_split_bar(*fatness, *butt_bot, *butt_top),
             Commands::HorLine(HorLine {
                 start,
                 end,
@@ -195,9 +153,13 @@ impl<F: num::Float + AddAssign + CheckedAdd + SubAssign> Commands<F> {
 
 #[derive(Clone, Debug, Default, Builder, PositionalArgs)]
 pub struct HorBar<F> {
+    #[builder(setter(into, strip_option))]
     fatness: Option<F>,
+    #[builder(setter(into, strip_option))]
     median: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_left: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_right: Option<F>,
 }
 
@@ -210,8 +172,11 @@ impl<F> HorBar<F> {
 
 #[derive(Clone, Debug, Default, Builder, PositionalArgs)]
 pub struct VertBar<F> {
+    #[builder(setter(into, strip_option))]
     fatness: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_bot: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_top: Option<F>,
 }
 
@@ -225,7 +190,9 @@ impl<F> VertBar<F> {
 #[derive(Clone, Copy, Debug, Builder, PositionalArgs)]
 pub struct DashedHorLine<F> {
     step: F,
+    #[builder(setter(into, strip_option))]
     width: Option<F>,
+    #[builder(setter(into, strip_option))]
     stroke: Option<F>,
 }
 
@@ -247,40 +214,60 @@ impl<F> DashedHorLine<F> {
 #[derive(Parameters, Clone, Copy, Debug, Builder, PositionalArgs)]
 pub struct DashedVertLine<F> {
     step: F,
+    #[builder(setter(into, strip_option))]
     length: Option<F>,
+    #[builder(setter(into, strip_option))]
     stroke: Option<F>,
 }
 
 #[derive(Clone, Copy, Debug, Parameters, Builder, PositionalArgs)]
 pub struct HorHalfBar<F> {
     side: Side,
+    #[builder(setter(into, strip_option))]
     fatness: Option<F>,
+    #[builder(setter(into, strip_option))]
     median: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_left: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_right: Option<F>,
 }
 
 #[derive(Clone, Copy, Debug, Parameters, Builder, PositionalArgs)]
 pub struct VertHalfBar<F> {
     side: Side,
+    #[builder(setter(into, strip_option))]
     fatness: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_bot: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_top: Option<F>,
 }
 
 #[derive(Clone, Copy, Debug, Builder, PositionalArgs)]
-pub struct Box_<F> {
-    start: Option<F>,
-    end: Option<F>,
+pub struct Box_<F>
+where
+    F: Float + Clone + Copy,
+{
+    #[builder(setter(into, strip_option))]
+    start: Point<F>,
+    #[builder(setter(into, strip_option))]
+    end: Point<F>,
 }
 
 #[derive(Clone, Copy, Debug, Builder, PositionalArgs)]
-pub struct Arc<F> {
-    start: Option<F>,
-    end: Option<F>,
+pub struct Arc<F>
+where
+    F: Float + Clone + Copy,
+{
+    #[builder(setter(into, strip_option))]
+    start: Point<F>,
+    #[builder(setter(into, strip_option))]
+    end: Point<F>,
     side: Side,
     stroke: F,
     radius: F,
+    #[builder(setter(into, strip_option))]
     butt: Option<F>,
 }
 
@@ -290,7 +277,10 @@ pub struct PolkaShade {
 }
 
 #[derive(Clone, Copy, Debug, Builder, PositionalArgs)]
-pub struct Diagonal<F: Float + Clone + Copy> {
+pub struct Diagonal<F>
+where
+    F: Float + Clone + Copy,
+{
     start: Point<F>,
     end: Point<F>,
     direction: Direction,
@@ -299,29 +289,42 @@ pub struct Diagonal<F: Float + Clone + Copy> {
 #[derive(Clone, Copy, Debug, Builder, PositionalArgs)]
 pub struct InnerCorner<F> {
     side: Side,
+    #[builder(setter(into, strip_option))]
     fatness: Option<F>,
+    #[builder(setter(into, strip_option))]
     corner_median: Option<F>,
 }
 
 #[derive(Clone, Copy, Debug, Builder, PositionalArgs)]
 pub struct HorSplitBar<F> {
+    #[builder(setter(into, strip_option))]
     fatness: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_left: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_right: Option<F>,
 }
 
 #[derive(Clone, Copy, Debug, Builder, PositionalArgs)]
 pub struct VertSplitBar<F> {
+    #[builder(setter(into, strip_option))]
     fatness: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_bot: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_top: Option<F>,
 }
 
 #[derive(Clone, Copy, Debug, Builder, PositionalArgs)]
-pub struct HorLine<F> {
+pub struct HorLine<F>
+where
+    F: Float + Clone + Copy,
+{
     start: Point<F>,
     end: Point<F>,
     stroke: F,
+    #[builder(setter(into, strip_option))]
     butt_left: Option<F>,
+    #[builder(setter(into, strip_option))]
     butt_right: Option<F>,
 }
