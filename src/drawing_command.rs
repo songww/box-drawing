@@ -1,5 +1,5 @@
-/// MenuTitle: boxDrawing
-// use super::recipes;
+#![allow(dead_code)]
+
 use std::{
     hash::Hash,
     ops::{AddAssign, Mul, SubAssign},
@@ -204,6 +204,15 @@ impl<F: Float> Hash for Point<F> {
     }
 }
 
+impl<F> Point<F>
+where
+    F: Float + Clone + Copy,
+{
+    pub fn new(x: F, y: F) -> Point<F> {
+        Point { x, y }
+    }
+}
+
 #[repr(u8)]
 #[derive(Debug, Clone, Copy)]
 pub enum Shade {
@@ -344,7 +353,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     }
 
     /// General drawing function for a vertical line.
-    fn vert_line(
+    pub fn vert_line(
         &self,
         start: &Point<F>,
         end: &Point<F>,
@@ -933,7 +942,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     }
 
     /// Double-stroked halfwidth horizontal bar, left or right.
-    fn hor_split_half_bar(
+    pub fn hor_split_half_bar(
         &self,
         side: Side,
         fatness: impl Into<Option<F>>,
@@ -949,10 +958,11 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
         self.hor_half_bar(side, fatness, top_median, butt_left, butt_right);
         self.hor_half_bar(side, fatness, bottom_median, butt_left, butt_right);
     }
+
     /// Double-stroked half-height vertical bar, top or bottom.
-    fn vert_split_half_bar(
+    pub fn vert_split_half_bar(
         &self,
-        fold: Side,
+        side: Side,
         fatness: impl Into<Option<F>>,
         butt_bot: impl Into<Option<F>>,
         butt_top: impl Into<Option<F>>,
@@ -964,7 +974,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
         let leftx = self.metrics.width / two() - self.metrics.stroke * fatness;
         let rightx = self.metrics.width / two() + self.metrics.stroke * fatness;
 
-        match fold {
+        match side {
             Side::TopLeft | Side::TopRight => {
                 //
                 self.vert_line(
@@ -1002,9 +1012,10 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     }
 
     /// Outer part of a double-stroked corner.
-    fn outer_corner(
+    pub fn outer_corner(
         &self,
         side: Side,
+        fold: Side,
         fatness: impl Into<Option<F>>,
         corner_median: impl Into<Option<F>>,
     ) {
@@ -1043,7 +1054,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
             }
         };
 
-        match side {
+        match fold {
             Side::TopLeft | Side::TopRight => {
                 corner_median += self.metrics.stroke * fatness;
                 self.vert_line(
@@ -1072,6 +1083,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
     pub fn inner_corner(
         &self,
         side: Side,
+        fold: Side,
         fatness: impl Into<Option<F>>,
         corner_median: impl Into<Option<F>>,
     ) {
@@ -1110,7 +1122,7 @@ impl<'m, C: Canvas<F>, F: Float + AddAssign + CheckedAdd + Mul + SubAssign>
             }
         };
 
-        match side {
+        match fold {
             Side::TopLeft | Side::TopRight => {
                 corner_median -= self.metrics.stroke * fatness;
                 self.vert_line(

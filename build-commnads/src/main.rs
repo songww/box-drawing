@@ -5,11 +5,11 @@ use pyo3::prelude::*;
 use rustpython_parser::{ast, error, parser};
 
 fn main() {
-    println!("cargo:rerun-if-changed=build.rs");
-    println!("cargo:rerun-if-changed=boxDrawing.py");
-    println!("cargo:rerun-if-changed=boxDrawingRecipes.py");
+    // println!("cargo:rerun-if-changed=build.rs");
+    // println!("cargo:rerun-if-changed=boxDrawing.py");
+    // println!("cargo:rerun-if-changed=boxDrawingRecipes.py");
 
-    let mut output = String::from("match c {\n");
+    let mut output = String::from("#[allow(unused_mut)]\n match c {\n");
 
     Python::with_gil(|py| {
         let module = PyModule::from_code(
@@ -65,8 +65,9 @@ fn main() {
             }
             output.push_str("]) },\n");
         }
+        output.push_str("_ => unreachable!(\"Invalid code, only 0x2500 - 0x259F are supported, but 0x{:X} recieved.\", c)");
         output.push_str("}\n");
-        println!("cargo:warning= {}", output);
+        // println!("cargo:warning= {}", output);
         let mut f = std::fs::OpenOptions::new()
             .write(true)
             .create(true)
@@ -102,11 +103,11 @@ fn build_command<'a>(s: &'a mut String, command: &ast::Located<ast::ExpressionTy
                 &*s
             });
 
-            s.push_str(&format!("let builder = {}Builder::default();\n", name));
+            s.push_str(&format!("let mut builder = {}Builder::default();\n", name));
 
             for (idx, arg) in args.iter().enumerate() {
                 // s.push_str(&format!("let attr = {}::position({});\n", name, idx));
-                s.push_str(&format!("builder.set_{}(", idx));
+                s.push_str(&format!("builder.set_{}((", idx));
                 match arg.node {
                     ast::ExpressionType::Identifier { ref name } => {
                         mrequired = true;
@@ -125,7 +126,7 @@ fn build_command<'a>(s: &'a mut String, command: &ast::Located<ast::ExpressionTy
                             "BL" => "Side::BottomLeft",
                             "BR" => "Side::BottomRight",
                             "bottomUp" => "Direction::BottomUp",
-                            "topDown" => "Direction::topDown",
+                            "topDown" => "Direction::TopDown",
                             "25" => "Shade::TwentyFive",
                             "50" => "Shade::Fifty",
                             "75" => "Shade::SeventyFive",
@@ -144,7 +145,7 @@ fn build_command<'a>(s: &'a mut String, command: &ast::Located<ast::ExpressionTy
                         unreachable!("cargo:warning= => {}( {:?}", name, arg.node);
                     }
                 }
-                s.push_str(".into());\n");
+                s.push_str(").into());\n");
             }
             for keyword in keywords.iter() {
                 let kwname = keyword.name.as_ref().unwrap();
@@ -152,10 +153,16 @@ fn build_command<'a>(s: &'a mut String, command: &ast::Located<ast::ExpressionTy
                 s.push_str("builder.");
                 s.push_str(attr);
                 s.push_str("(");
+                // if matches!(attr, "butt_top" | "butt_bot") {
+                //     s.push_str("Some(");
+                // }
                 if take_expr(s, &keyword.value) {
                     mrequired = true;
                 }
-                s.push_str(".into());");
+                // if matches!(attr, "butt_top" | "butt_bot") {
+                //     s.push_str(")");
+                // }
+                s.push_str(");");
                 s.push('\n');
             }
         }
@@ -259,7 +266,7 @@ fn take_tuple<'a>(s: &'a mut String, elements: &[ast::Located<ast::ExpressionTyp
 
     let mut mrequired = false;
 
-    s.push_str("Point::from((");
+    s.push_str("Point::new(");
     if take_expr(s, &elements[0]) {
         mrequired = true;
     }
@@ -267,7 +274,7 @@ fn take_tuple<'a>(s: &'a mut String, elements: &[ast::Located<ast::ExpressionTyp
     if take_expr(s, &elements[1]) {
         mrequired = true;
     }
-    s.push_str("))");
+    s.push_str(")");
 
     mrequired
 }

@@ -1,3 +1,5 @@
+#![allow(dead_code)]
+
 use std::ops::{AddAssign, SubAssign};
 
 use num::CheckedAdd;
@@ -19,6 +21,7 @@ impl<F: num::Float + AddAssign + CheckedAdd + SubAssign + 'static> Recipe<F> {
     }
 }
 
+/*
 macro_rules! boxed {
     ([$($cmd:expr),*]) => {
         Box::new([$($cmd),*])
@@ -33,6 +36,7 @@ macro_rules! command {
         Box::new(|_: &Metrics<F>| {Commands::$name($name::new($($p),*)$(.$attr($val))*)})
     };
 }
+*/
 
 // macro_rules! set {
 //     ($builder:ident :: $attr:expr => $value:expr) => {
